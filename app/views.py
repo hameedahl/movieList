@@ -32,12 +32,14 @@ def signup(request):
                                 user.save()
                                 
                                 # log user in set up profile
+                                user_login = auth.authenticate(username=username, password=password)
+                                auth.login(request, user_login)
 
                                 # profile obj for new user
                                 user_model = User.objects.get(username=username)
                                 new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
                                 new_profile.save()
-                                return redirect('login')
+                                return redirect('settings')
 
                 else:
                         messages.info(request, 'Passwords do not match')
@@ -66,3 +68,30 @@ def login(request):
 def logout(request):
         auth.logout(request)
         return redirect('login')
+
+@login_required(login_url='login') # can not access feed page until you are logged in
+def settings(request):
+        user_profile = Profile.objects.get(user=request.user)
+        if request.method == 'POST':
+                if request.FILES.get('image') == None: # if there is no img sent
+                        image = user_profile.profile_img # resubmit the og img
+                        bio = request.POST['bio']
+                        location = request.POST['location']
+
+                        user_profile.profile_img = image
+                        user_profile.bio = bio
+                        user_profile.location = location
+                        user_profile.save()
+                if request.FILES.get('image') != None:
+                        image = request.FILES.get('image')
+                        bio = request.POST['bio']
+                        location = request.POST['location']
+
+                        user_profile.profile_img = image
+                        user_profile.bio = bio
+                        user_profile.location = location
+                        user_profile.save()
+                
+                return redirect('settings')
+
+        return render(request, 'settings.html', {'user_profile': user_profile})

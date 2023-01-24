@@ -1,3 +1,151 @@
+* {
+        margin: 0;
+        padding: 0;
+        color: #fffefe;
+        font-family: 'Times New Roman', Times, serif
+}
+
+
+/********** SIGN UP PAGE **********/
+
 body {
-        background-color: blue;
+        background-color: #1e1e1e;
+        display: flex;
+        justify-content: space-between;
+}
+.form-container {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+}
+
+.form-box {
+        position: relative;
+        width: 70%;
+        height: 75%;
+        left: 50%;
+        transform: translateX(-50%);
+}
+
+.form-container-title {
+        font-size: 2rem;
+        font-weight: bolder;
+        width: inherit;
+        margin-bottom: .5rem;
+}
+
+.form-container-header, .form-container-form, .form-container-footer {
+        padding: 4rem;
+}
+
+.form-container-header {
+        text-align: center;
+        padding-bottom: 1rem;
+}
+
+.form-container-form {
+        position: absolute;
+        width: inherit;
+        height: initial;
+        left: 50%;
+        transform: translateX(-50%);
+}
+
+#sign-up-form , #login-in-form {
+        position: absolute;
+        padding: 1rem;
+        top: 0;
+        width: inherit;
+        left: 50%;
+        transform: translateX(-50%);
+}
+
+#sign-up-form input, #login-in-form input {
+        display: block;
+        font-size: 1.2rem;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        border-bottom: .5px solid #fff;
+        color: #fff;
+        padding: .5rem 0;
+        width: 100%;
+        margin-bottom: 1rem;
+}
+
+#password_confirm {
+        font-size: 400px;
+        margin-bottom: 100rem;
+}
+
+.form-btn {
+        position: relative;
+        width: 100%;
+        height: 36px;
+        background-color: #6b6b6b;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 1rem;
+        border: none;
+}
+
+.form-container-footer {
+        position: absolute;
+        bottom: 4rem;
+        width: inherit;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        padding: 0;
+}
+
+.form-container-footer a {
+        color: rgb(106, 0, 255);
+        text-decoration: none;
+}
+
+.form-movie-preview {
+        width: 50vw;
+        height: 100vh;
+}
+
+.error-msgs {
+        padding: .5rem 1rem 1rem 0;
+}
+
+.error-msgs h5 {
+        color: #ff0000;
+        font-size: 1rem;
+}
+
+
+/********** FEED PAGE **********/
+
+.side-bar {
+        position: fixed;
+        width: 15vw;
+        height: 100%;
+        z-index: 1;
+        /* background-color: red; */
+}
+
+.user-background {
+        position: fixed;
+        /* background-color: green; */
+        left: 15vw;
+        width: 100%;
+        height: 15vh;
+        z-index: 0;
+}
+
+.user-feed{
+        /* background-color: yellow; */
+        position: relative;
+        top: 15vh;
+        left: 15vw;
+        height: 85vh;
+        width: 85%;
+
 }
