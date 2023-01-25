@@ -8,16 +8,93 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Your WatchList - WatchList</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
-        <div class="side-bar">
-
+        <div class="nav-bar">
+                <div class="logo">
+                        <h1>WatchList</h1>
+                </div>
+                <div class="nav-bar-items">
+                        <div class="home-btn nav-item"><i class="fa-solid fa-house"></i><span class="active-nav-item"></span></div>
+                        <div class="new-series-btn nav-item"><i class="fa-solid fa-circle-plus"></i><span></span></div>
+                        <div class="profile-btn nav-item"><i class="fa-solid fa-list"></i><span></span></div>
+                </div>
+                <div class="settings">
+                        <div><i class="fa-solid fa-gear"></i></div>
+                        <div>Log out</div>
+                </div>
         </div>
-        <div class="user-background">
-
+        <div class="filters">
+                <div class="filter-list">
+                        <div class="filter-items">New Movies</div>
+                        <div class="filter-items">Popular Movies</div>
+                        <div class="filter-items">For You</div>
+                        <div class="filter-items">New Shows</div>
+                        <div class="filter-items">Popular Shows</div>     
+                </div>
+        </div>
+        <div class="left-bar">
+                <div class="profile-box side-bar-box">
+                        <div class="user-background"></div>
+                        <div class="profile-header">
+                                <div class="followers-count-container profile-header-item">
+                                        <p class="followers-count">1000<p style="color: #b1aeae;">Watchers</p></p>
+                                </div>
+                                <div class="img-container profile-header-item">
+                                        <img src="{{user_profile.profile_img.url}}" alt="">
+                                        <div class="profile-username">
+                                                <p class="user-name">John Doe</p>
+                                                <p class="username">{{user_profile.user}}</p>
+                                        </div>
+                                </div>
+                                <div class="following-count-container profile-header-item">
+                                        <p class="following-count">1000<p style="color: #b1aeae;">Watching</p></p>
+                                </div>
+                        </div>
+                        <div class="profile-bio">
+                                <p class="bio">this is a really long bio and i want to see what it does thanks</p>
+                        </div>
+                        <div class="my-profile-btn-container"><div class="my-profile-btn"><p>My Profile</p></div></div>
+                </div>
+                <div class="genres-container left-bar-items">
+                        <h4>Genres</h4>
+                        <div class="genre-item"><p>Drama</p></div>
+                        <div class="genre-item"><p>Sci-fi</p></div>
+                        <div class="genre-item"><p>Anime</p></div>
+                        <div class="genre-item"><p>Adventure</p></div>
+                        <div class="genre-item"><p>Action</p></div>
+                        <div class="genre-item"><p>Comedy</p></div>
+                </div>
+                <div class="just-watched left-bar-items">
+                        <h4>Just Watched</h4>
+                        <div class="genre-item"><p>Drama</p></div>
+                        <div class="genre-item"><p>Sci-fi</p></div>
+                        <div class="genre-item"><p>Anime</p></div>
+                        <div class="genre-item"><p>Adventure</p></div>
+                        <div class="genre-item"><p>Action</p></div>
+                        <div class="genre-item"><p>Comedy</p></div>
+                </div>
         </div>
         <div class="user-feed">
+                <div class="feed-list">
+                        <div class="movie movie-box movie-main-box">
+                                <img class="movie-poster" src="" alt="">
+                                <h3 class="movie-title">Movie Title</h3>
+                                <div class="movie-genres">
+                                        <p class="genre">Drama</p>
+                                        <p class="genre">Action</p>
+                                </div>
+                        </div>   
+                </div>
+        </div> 
+        <div class="right-bar">
+                <div class="side-bar-box movie-box movie-img-container">
+                        <img class="movie-poster" src="" alt="">
+                <h3 class="movie-title">Movie Title</h3>
 
+                </div>
         </div>
 </body>
 </html>

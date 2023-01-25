@@ -102,7 +102,7 @@ body {
 }
 
 .form-container-footer a {
-        color: rgb(106, 0, 255);
+        color: rgb(145, 66, 255);
         text-decoration: none;
 }
 
@@ -123,29 +123,322 @@ body {
 
 /********** FEED PAGE **********/
 
-.side-bar {
+
+.nav-bar {
         position: fixed;
-        width: 15vw;
-        height: 100%;
+        width: 100%;
+        height: 4rem;
         z-index: 1;
-        /* background-color: red; */
+}
+
+.nav-bar-items {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        width: 7rem;
+        padding: 1.5rem;
+}
+
+.nav-item i,  .active-nav-item {
+        color: #9142ff;
+        cursor: pointer;
+        display: block;
+}
+
+.nav-item {
+        display: block;
+        height: 2rem;
+        position: relative;
+}
+
+.username::before {
+        content: '@';
+        position: relative;
+}
+
+.active-nav-item {
+        position: absolute;
+        width: .5rem;
+        height: .5rem;
+        border-radius: 50%;
+        background-color: #9142ff;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+}
+
+.left-bar {
+        position: fixed;
+        top: 4rem;
+        height: 100%;
+        width: 15rem;
+        padding: 1rem;
+}
+
+.side-bar-box {
+        position: relative;
+        background-color: #2b2b2b;
+        height: 20rem;
+        width: 15rem;
+        border-radius: 1rem;
 }
 
 .user-background {
-        position: fixed;
-        /* background-color: green; */
-        left: 15vw;
-        width: 100%;
-        height: 15vh;
+        background-color: #9142ff;
+        border-radius: 1rem 1rem 0 0;
+        width: 15rem;
+        height: 5rem;
         z-index: 0;
+
 }
 
-.user-feed{
-        /* background-color: yellow; */
+.profile-header {
+        position: absolute;
+        width: 13rem;
+        height: 1rem;
+        padding: 1rem;
+        z-index: 1;
+        top: 5rem;
+}
+
+.profile-header {
+        display: flex;
+        justify-content: space-between;
+}
+
+.img-container img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        border: 5px solid #2b2b2b;
+}
+.img-container {
         position: relative;
-        top: 15vh;
-        left: 15vw;
-        height: 85vh;
-        width: 85%;
+        top: -4rem;
+}
+
+.profile-header-item {
+        text-align: center;
+        display: block;
+}
+
+.profile-header-item p {
+        font-size: 14px;
+}
+
+.followers-count-container, .following-count-container {
+        position: relative;
+        top: -1rem;
+        margin-top: .5rem;
+}
+
+.profile-username {
+        width: 200%;
+        min-width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+}
+
+.username {
+        color: #b1aeae;
+        padding-top: 5px;
+}
+
+.profile-bio {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        min-width: 100%;
+        top: 12rem;
+}
+
+.bio {
+        font-size: 14px;
+        text-align: center;
+        padding: 1rem;
+        padding-top: 0;
+}
+
+
+.my-profile-btn-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        bottom: 0;
+        padding: 1rem;
+}
+
+.my-profile-btn {
+        background-color: #474747;
+        color: #fff;
+        border-radius: .5rem;
+        height: 2rem;
+        text-align: center;
+        cursor: pointer;
+}
+
+.my-profile-btn p {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 14px;
+}
+
+.left-bar-items {
+        padding: 1rem 0;
+        padding-bottom: 0;
+        width: inherit;
+}
+
+.left-bar-items h4 {
+        padding-bottom: 1rem;
+}
+
+.genre-item {
+        position: relative;
+        background-color: #474747;
+        color: #fff;
+        border-radius: .5rem;
+        height: 1rem;
+        width: 23%;
+        padding: 2%;
+        text-align: center;
+        display: inline-block;
+        margin-right: .5rem;
+        margin-bottom: .5rem;
+}
+
+.genre-item p {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+}
+
+p, h4, h3 {
+        cursor: default;
+}
+
+.user-feed {
+        position: relative;
+        top: 6rem;
+        height: auto;
+        width: 55rem;
+        left: 17rem;
+        padding: 1rem;
+        z-index: 0;
+        overflow-y: auto;
+}
+
+.filters {
+        position: fixed;
+        width: 100%;
+        height: 2rem;
+        top: 5rem;
+        z-index: 1;
+}
+
+.filter-list {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        height: 2rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+}
+
+.filter-items {
+        position: relative;
+        color: #fff;
+        cursor: pointer;
+        height: 20%;
+        padding-bottom: 20px;
+}
+
+.filter-items::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 1px;
+        background-color: #9142ff;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+}
+
+.filter-items:hover::after {
+        width: 100%;
+}
+
+.logo {
+        position: absolute;
+        padding: 1rem;
+        font-size: 12px;
+}
+
+.settings {
+        position: absolute;
+        padding: 1rem;
+        right: 0;  
+        display: flex;
+        justify-content: space-between;
+        width: 6%;
+        color: #9142ff;
+}
+
+.settings div {
+        cursor: pointer;
+
+}
+
+.right-bar {
+        position: fixed;
+        top: 4rem;
+        height: 100%;
+        right: 0;
+        width: 15rem;
+        padding: 1rem;
+}
+
+.movie-title {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        top: 1rem;
+}
+
+.feed-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 1rem;
+}
+
+.movie-poster {
+        height: 16rem;
+        width: 12rem;
+        border-radius: 1rem;
+}
+
+.movie {
+        background-color: red;
+        height: 24rem;
+        padding: 1rem;
+        margin: 10px;
+
+        /* width: 15rem; */
+}
+
+.movie-genres {
+        position: relative;
+
 
 }
