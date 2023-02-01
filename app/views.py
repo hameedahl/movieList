@@ -3,13 +3,17 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth # gets users from db
 from .models import Profile
+from .models import PopularMovie
 from django.contrib.auth.decorators import login_required
+import requests
 # Create your views here.
 
 @login_required(login_url='login') # can not access feed page until you are logged in
 def index(request):
         user_profile = Profile.objects.get(user=request.user)
-        return render(request, 'index.html', {'user_profile': user_profile})
+        popularMovies = PopularMovie.objects.all()
+        print(popularMovies)
+        return render(request, 'index.html', {'user_profile': user_profile, "popular_movies" : popularMovies})
 
 def signup(request):
         if request.method == 'POST':
@@ -96,3 +100,63 @@ def settings(request):
                 return redirect('settings')
 
         return render(request, 'settings.html', {'user_profile': user_profile})
+
+def popularMovies(request):
+                
+                # get movie info
+                url = f"https://imdb-api.com/en/API/Title/k_1pvaf6m4/{id}/Trailer,Ratings"
+                response = requests.get(url)
+                movie_obj = response.json()
+
+                # get streaming info
+                url = "https://streaming-availability.p.rapidapi.com/get/basic"
+                querystring = {"country":"us","imdb_id":"tt1375666","output_language":"en"}
+                headers = {
+                        "X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
+                        "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
+                }
+                response = requests.request("GET", url, headers=headers, params=querystring)
+
+                print(response.text['imdbID'])
+
+        # url = "https://imdb-api.com/en/API/MostPopularMovies/k_1pvaf6m4"
+        # response = requests.get(url)
+        # # returns array of objects
+        # movies = response.json()['items']
+
+        # for movie in movies:
+        #         id = movie['id']
+        #         # get movie info
+        #         url = f"https://imdb-api.com/en/API/Title/k_1pvaf6m4/{id}/Trailer,Ratings"
+        #         response = requests.get(url)
+        #         movie_obj = response.json()
+
+        #         # get streaming info
+        #         url = "https://streaming-availability.p.rapidapi.com/get/basic"
+        #         querystring = {"country":"us","tmdb_id":id,"output_language":"en"}
+        #         headers = {
+        #                 "X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
+        #                 "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
+        #         }
+        #         response = requests.request("GET", url, headers=headers, params=querystring)
+
+        #         print(response.text)
+        #         movie_data = PopularMovie(
+        #                 fullTitle = movie_obj['fullTitle'],
+        #                 movie_id = movie_obj['id'],
+        #                 image = movie_obj['image'],
+        #                 releaseDate = movie_obj['releaseDate'],
+        #                 runtimeStr = movie_obj['runtimeStr'],
+        #                 plot = movie_obj['plot'],
+        #                 stars = movie_obj['stars'],
+        #                 genres = movie_obj['genres'],
+        #                 countries = movie_obj['countries'],
+        #                 languages = movie_obj['languages'],
+        #                 contentRating = movie_obj['contentRating'],
+        #                 ratings = movie_obj['ratings'],
+        #                 trailer = movie_obj['trailer'],
+        #                 keywords = movie_obj['keywords'],
+        #                 similars = movie_obj['similars']
+        #         )
+        #         movie_data.save()
+                return render(request, 'popularMovies.html')

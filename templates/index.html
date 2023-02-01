@@ -6,16 +6,16 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Your WatchList - WatchList</title>
+        <title>WatchedList</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="{% static 'js/script.js' %}" defer></script>
+        <script src="{% static 'js/script.js' %}"></script>
 </head>
 <body>
         <div class="nav-bar">
                 <div class="logo">
-                        <h1>WatchList</h1>
+                        <h1>Rewind <i class="fa-solid fa-backward"></i></h1>
                 </div>
                 <div class="nav-bar-items">
                         <div class="home-btn nav-item"><i class="fa-solid fa-house"></i><span class="active-nav-item"></span></div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="settings">
                         <div><i class="fa-solid fa-gear"></i></div>
-                        <div>Log out</div>
+                        <div><a href="/logout">Log out</a></div>
                 </div>
         </div>
         <div class="filters">
@@ -46,7 +46,7 @@
                                 <div class="img-container profile-header-item">
                                         <img src="{{user_profile.profile_img.url}}" alt="">
                                         <div class="profile-username">
-                                                <p class="user-name">John Doe</p>
+                                                <p class="user-name">Hameedah Lawal</p>
                                                 <p class="username">{{user_profile.user}}</p>
                                         </div>
                                 </div>
@@ -55,7 +55,7 @@
                                 </div>
                         </div>
                         <div class="profile-bio">
-                                <p class="bio">this is a really long bio and i want to see what it does thanks</p>
+                                <p class="bio">{{user_profile.bio}}</p>
                         </div>
                         <div class="my-profile-btn-container"><div class="my-profile-btn"><p>My Profile</p></div></div>
                 </div>
@@ -80,71 +80,87 @@
         </div>
         <div class="user-feed">
                 <div class="feed-list">
-                        <div class="movie movie-box movie-main-box">
-                                <img class="movie-poster" src="" alt="">
-                                <h3 class="movie-title">TitleMovie TitleMovie TitleMovie TitleMovie TitleMovie Title<p class="movie-year">2012</p></h3>
-                                <!-- <div class="movie-genres">
-                                        <p class="genre">Drama</p>
-                                        <p class="genre">Action</p>
-                                </div> -->
-                        </div>  
-                        <div class="movie movie-box movie-main-box">
-                                <img class="movie-poster" src="" alt="">
-                                <h3 class="movie-title">Movie Title<p class="movie-year">2012</p></h3>
-                                <!-- <div class="movie-genres">
-                                        <p class="genre">Drama</p>
-                                        <p class="genre">Action</p>
-                                </div> -->
-                        </div>   
-                        <div class="movie movie-box movie-main-box">
-                                <img class="movie-poster" src="" alt="">
-                                <h3 class="movie-title">Movie Title<p class="movie-year">2012</p></h3>
-                                <!-- <div class="movie-genres">
-                                        <p class="genre">Drama</p>
-                                        <p class="genre">Action</p>
-                                </div> -->
-                        </div>    
-                        <div class="movie movie-box movie-main-box">
-                                <img class="movie-poster" src="" alt="">
-                                <h3 class="movie-title">Movie Title<p class="movie-year">2012</p></h3>
-                                <!-- <div class="movie-genres">
-                                        <p class="genre">Drama</p>
-                                        <p class="genre">Action</p>
-                                </div> -->
-                        </div>  
-                        <div class="movie movie-box movie-main-box">
-                                <img class="movie-poster" src="" alt="">
-                                <h3 class="movie-title">Movie Title<p class="movie-year">2012</p></h3>
-                                <!-- <div class="movie-genres">
-                                        <p class="genre">Drama</p>
-                                        <p class="genre">Action</p>
-                                </div> -->
-                        </div>   
-                        <div class="movie movie-box movie-main-box">
-                                <img class="movie-poster" src="" alt="">
-                                <h3 class="movie-title">Movie Title<p class="movie-year">2012</p></h3>
-                                <!-- <div class="movie-genres">
-                                        <p class="genre">Drama</p>
-                                        <p class="genre">Action</p>
-                                </div> -->
-                        </div> 
+                        {% for movie in popular_movies %}
+                                <div class="movie movie-box movie-main-box">
+                                        <img class="movie-poster" src="{{movie.image}}" alt="">
+                                        <h3 class="movie-title">{{movie.fullTitle}}</h3>
+                                        <input type="hidden" name="trailer" value="{{movie.fullTitle}}">
+                                        <input type="hidden" name="trailer" value="{{movie.fullTitle}}">
+
+                                        <input type="hidden" name="trailer" value="">
+
+                                </div>
+                        {% endfor %}
                 </div>
         </div> 
         <div class="right-bar">
-                <div class="side-bar-box side-bar-movie-box">
-                        <img class="movie-poster" src="" alt="">
-                        <h3 class="movie-title">TitleMovie TitleMovie TitleMovie TitleMovie TitleMovie Title<p class="movie-year">2012</p></h3>
-                </div>
-                <div class="services">
-                        <img class="stream-logo" src="" alt="">
-                </div>
-                <div class="ratings">
-
-                </div>
-                <div class="btns">
-                        <div class="my-profile-btn-container trailer-btn"><div class="my-profile-btn"><p>Watch Trailer</p></div></div>
-                        <div class="my-profile-btn-container add-to-list-btn"><div class="my-profile-btn"><p>+</p></div></div>                              
+                <div class="movie-bar">
+                        <div class="movie-bar-content">
+                                <img class="movie-poster" src="{{popular_movies.0.image}}" alt="">
+                                <h3 class="movie-title">{{popular_movies.0.fullTitle}}</h3>
+                        </div>
+                        <div class="movie-bar-content ratings">
+                                <div class="rating">
+                                        <img class="rating-logo" src="{% static 'images/tomatoe.png' %}" alt="">
+                                        <p class="rating-amount">{{popular_movies.0.ratings.rottenTomatoes}}%</p>
+                                </div>
+                                <div class="rating">
+                                        <img class="rating-logo" src="{% static 'images/metacritic.png' %}" alt="">
+                                        <p class="rating-amount">{{popular_movies.0.ratings.metacritic}}%</p>
+                                </div>
+                                <div class="rating">
+                                        <img style="width: 1.5rem;" class="rating-logo" src="{% static 'images/imdb.png' %}" alt="">
+                                        <p class="rating-amount" style="position: relative; top: 2px;">{{popular_movies.0.ratings.imDb}}/10</p>
+                                </div>
+                        </div>
+                        <div class="movie-bar-content plot">
+                                <p>{{popular_movies.0.trailer.videoDescription}}</p>
+                        </div>
+                        <div class="movie-bar-content movie-info">
+                                <div class="movie-info-headers">
+                                        <p>Genres:</p>
+                                        <p>Countries:</p>
+                                        <p>Languages:</p>
+                                        <p>Rated:</p>
+                                        <p>Runtime:</p>
+                                        <p>Release:</p>
+                                </div>
+                                <div class="movie-info-items">
+                                        <p>{{popular_movies.0.genres}}</p>
+                                        <p>{{popular_movies.0.countries}}</p>
+                                        <p>{{popular_movies.0.languages}}</p>
+                                        <p>{{popular_movies.0.contentRating}}</p>
+                                        <p>{{popular_movies.0.runtimeStr}}</p>
+                                        <p>{{popular_movies.0.releaseDate}}</p>
+                                </div>
+                        </div>
+                        <div class="movie-bar-content watch-options">
+                                <div class="stream-option">
+                                        <p>Stream</p>
+                                </div>
+                                <div class="rent-option">
+                                        <p>Rent</p>
+                                        <img class="streaming-logo" src="{% static 'images/' %}" alt="">
+                                </div>
+                        </div>
+                        <div class="movie-bar-content movie-btns">
+                                <a class="trailer-url" href="{{popular_movies.0.trailer.link}}"><div class="trailer-btn">
+                                        <p>Watch Trailer</p>
+                                </div></a>
+                                <div class="add-to-list-btn">
+                                        <p>+</p>
+                                </div>                      
+                        </div>
                 </div>
         </div>
+        <script>
+                $(".movie").click(function () {
+                        image = $(this).children(".movie-poster").attr("src");
+                        title = $(this).children(".movie-title").text();
+
+                        $(".side-bar-movie-box").children(".movie-poster").attr("src", image);
+                        $(".side-bar-movie-box").children(".movie-title").text(title);
+                });
+        </script>
 </body>
 </html>

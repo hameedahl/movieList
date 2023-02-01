@@ -14,3 +14,26 @@ class Profile(models.Model):
 
         def __str__(self) -> str:
                 return self.user.username
+
+
+class PopularMovie(models.Model):
+    fullTitle = models.CharField(max_length=100, default='')
+    movie_id = models.CharField(max_length=50, default='')
+    image = models.CharField(max_length=100, default='')
+    releaseDate = models.CharField(max_length=20, default='')
+    runtimeStr = models.CharField(max_length=20, default='')
+    plot = models.CharField(max_length=10000, default='')
+    stars = models.CharField(max_length=10000, default='')
+    genres = models.CharField(max_length=10000, default='')
+    countries = models.CharField(max_length=1000, default='')
+    languages = models.CharField(max_length=10000, default='')
+    contentRating = models.CharField(max_length=10, default='', null=True)
+    ratings = models.JSONField(default=dict)
+    trailer = models.JSONField(default=dict)
+    keywords = models.CharField(max_length=10000, default='')
+    similars = models.CharField(max_length=10000, default='')
+    # streamingServices = models.JSONField(default=dict)
+
+
+    def __str__(self):
+        return self.fullTitle

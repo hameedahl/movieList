@@ -278,34 +278,35 @@ body {
         bottom: 0;
         padding: 1rem;
 }
-.add-to-list-btn  {
-        width: 20%;
-        position: relative;
-}
+
 
 .trailer-btn, .add-to-list-btn  {
-        /* display: inline-block; */
-}
-.btns {
-        width: 90%;
-        position: absolute;
-        height: 4rem;
-        display: flex;
-        justify-content: space-around;
-        right: 0;
-}   
-.trailer-btn {
-        width: 60%;
         position: relative;
-        left: 5rem;
+        background-color: #474747;
+        color: #fff;
+        border-radius: .5rem;
+        height: 2rem;
+        cursor: pointer;
+}
+.movie-btns {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        position: fixed;
+}   
+
+a {
+        text-decoration: none;
 }
 
-/* .btns {
-        position: relative;
-        width: 100%;
-        height: 3rem;
-        background-color: red;
-} */
+.trailer-btn {
+        width: 8rem;
+}
+
+.add-to-list-btn {
+        width: 2rem;
+}
 
 .my-profile-btn {
         background-color: #474747;
@@ -316,12 +317,14 @@ body {
         cursor: pointer;
 }
 
-.my-profile-btn p {
+.my-profile-btn p, .trailer-btn p, .add-to-list-btn p {
         position: absolute;
         left: 50%;
         top: 50%;
+        width: 100%;
         transform: translate(-50%, -50%);
         font-size: 14px;
+        cursor: pointer;
 }
 
 .left-bar-items {
@@ -368,7 +371,6 @@ p, h4, h3 {
         left: 17rem;
         padding: 1rem;
         z-index: 0;
-        /* background-color: red; */
 }
 
 .feed-list {
@@ -384,7 +386,6 @@ p, h4, h3 {
         left: 50%;
         transform: translateX(-50%);
         height: 35rem;
-        /* background-color: blue; */
 }
 
 .filters {
@@ -452,10 +453,11 @@ p, h4, h3 {
 .right-bar {
         position: fixed;
         top: 4rem;
-        height: 100%;
+        height: 85%;
         right: 0;
         width: 15rem;
         padding: 1rem;
+        overflow: auto;
 }
 
 .movie-title {
@@ -487,10 +489,12 @@ p, h4, h3 {
         position: relative;
 }
 
-.side-bar-movie-box .movie-poster {
+.movie-bar .movie-poster {
         height: 18rem;
         width: 13rem;
-
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
 }
 
 .right-bar .side-bar-box {
@@ -500,9 +504,84 @@ p, h4, h3 {
         transform: translateX(-50%);
 }
 
-.side-bar-movie-box .movie-title {
+.movie-bar {
         position: relative;
-        font-size: 15px; 
+        width: inherit;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+}
 
-        /* bottom: -0; */
+.movie-bar .movie-title {
+        position: relative;
+        font-size: 15px;
+}
+
+.movie-poster {
+        --c: #9142ff; /* the border color */
+        --b: 1px;    /* the border thickness*/
+        --g: 5px;     /* the gap on hover */
+
+        padding: calc(var(--g) + var(--b));
+        --_g: #0000 25%,var(--c) 0;
+        background: 
+                conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g))
+                var(--_i,200%) 0  /200% var(--_i,var(--b))  no-repeat,
+                conic-gradient(            at bottom var(--b) left  var(--b),var(--_g))
+                0   var(--_i,200%)/var(--_i,var(--b)) 200%  no-repeat;
+        transition: .3s, background-position .3s .3s;
+        cursor: pointer;
+}
+.movie-poster:hover {
+        --_i: 100%;
+        transition: .2s, background-size .2s .2s;
+}
+
+.ratings {
+        display: flex;
+        justify-content: space-around;
+
+        padding: 5px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        width: 100%;
+}
+
+.rating {
+        width: 10rem;
+        height: 2rem;
+        /* display: inline-block; */
+
+}
+
+.movie-bar-content {
+        width: inherit;
+        position: relative;
+}
+
+/* .rating-amount {
+        position: relative;
+        top: 1rem;
+} */
+
+.rating p, .rating img {
+        display: inline;
+}
+.rating-logo {
+        width: 1rem;
+}
+
+.movie-info {
+        display: flex;
+        justify-content: space-between;
+}
+
+.plot, .movie-info, .streaming {
+        margin-bottom: 1rem;
+}
+
+.movie-info div p, .plot {
+        font-size: 15px;
 }
