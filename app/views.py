@@ -103,60 +103,46 @@ def settings(request):
 
 def popularMovies(request):
                 
+        # get movie info
+        url = "https://imdb-api.com/en/API/MostPopularMovies/k_1pvaf6m4"
+        response = requests.get(url)
+        # returns array of objects
+        movies = response.json()['items']
+
+        for movie in movies:
+                id = movie['id']
                 # get movie info
                 url = f"https://imdb-api.com/en/API/Title/k_1pvaf6m4/{id}/Trailer,Ratings"
                 response = requests.get(url)
                 movie_obj = response.json()
 
                 # get streaming info
-                url = "https://streaming-availability.p.rapidapi.com/get/basic"
-                querystring = {"country":"us","imdb_id":"tt1375666","output_language":"en"}
-                headers = {
-                        "X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
-                        "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
-                }
-                response = requests.request("GET", url, headers=headers, params=querystring)
-
-                print(response.text['imdbID'])
-
-        # url = "https://imdb-api.com/en/API/MostPopularMovies/k_1pvaf6m4"
-        # response = requests.get(url)
-        # # returns array of objects
-        # movies = response.json()['items']
-
-        # for movie in movies:
-        #         id = movie['id']
-        #         # get movie info
-        #         url = f"https://imdb-api.com/en/API/Title/k_1pvaf6m4/{id}/Trailer,Ratings"
-        #         response = requests.get(url)
-        #         movie_obj = response.json()
-
-        #         # get streaming info
-        #         url = "https://streaming-availability.p.rapidapi.com/get/basic"
-        #         querystring = {"country":"us","tmdb_id":id,"output_language":"en"}
-        #         headers = {
-        #                 "X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
-        #                 "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
-        #         }
-        #         response = requests.request("GET", url, headers=headers, params=querystring)
-
-        #         print(response.text)
-        #         movie_data = PopularMovie(
-        #                 fullTitle = movie_obj['fullTitle'],
-        #                 movie_id = movie_obj['id'],
-        #                 image = movie_obj['image'],
-        #                 releaseDate = movie_obj['releaseDate'],
-        #                 runtimeStr = movie_obj['runtimeStr'],
-        #                 plot = movie_obj['plot'],
-        #                 stars = movie_obj['stars'],
-        #                 genres = movie_obj['genres'],
-        #                 countries = movie_obj['countries'],
-        #                 languages = movie_obj['languages'],
-        #                 contentRating = movie_obj['contentRating'],
-        #                 ratings = movie_obj['ratings'],
-        #                 trailer = movie_obj['trailer'],
-        #                 keywords = movie_obj['keywords'],
-        #                 similars = movie_obj['similars']
-        #         )
-        #         movie_data.save()
-                return render(request, 'popularMovies.html')
+                # url = "https://streaming-availability.p.rapidapi.com/get/basic"
+                # querystring = {"country":"us","imdb_id":id,"output_language":"en"}
+                # headers = {
+                #         "X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
+                #         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
+                # }
+                # streaming = (requests.request("GET", url, headers=headers, params=querystring)).json()
+                # print(streaming)
+                
+                movie_data = PopularMovie(
+                        fullTitle = movie_obj['fullTitle'],
+                        movie_id = movie_obj['id'],
+                        image = movie_obj['image'],
+                        releaseDate = movie_obj['releaseDate'],
+                        runtimeStr = movie_obj['runtimeStr'],
+                        plot = movie_obj['plot'],
+                        stars = movie_obj['stars'],
+                        genres = movie_obj['genres'],
+                        countries = movie_obj['countries'],
+                        languages = movie_obj['languages'],
+                        contentRating = movie_obj['contentRating'],
+                        ratings = movie_obj['ratings'],
+                        trailer = movie_obj['trailer'],
+                        keywords = movie_obj['keywords'],
+                        similars = movie_obj['similars']
+                        # streamingServices = streaming['streamingInfo']
+                )
+                movie_data.save()
+        return render(request, 'popularMovies.html')

@@ -6,22 +6,22 @@ var movies = [];
 
 // genres = ["Action", "Comedy"]
 
-const settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://streaming-availability.p.rapidapi.com/get/basic?country=us&imdb_id=tt1375666&output_language=en",
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
-		"X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
-	}
-};
+// const settings = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://streaming-availability.p.rapidapi.com/get/basic?country=us&imdb_id=tt1375666&output_language=en",
+// 	"method": "GET",
+// 	"headers": {
+// 		"X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
+// 		"X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
+// 	}
+// };
 
-$.ajax(settings).done(function (response) {
-	console.log(JSON.parse(response));
-});
+// $.ajax(settings).done(function (response) {
+// 	console.log(JSON.parse(response));
+// });
 
-console.log("hi")
+// console.log("hi")
 
 async function getMovies() 
 {
@@ -54,12 +54,3 @@ async function displayMovies()
         });
 }
 
-$(".movie").click(function () {
-        image = $(this).children(".movie-poster").attr("src");
-        title = $(this).children(".movie-title").text();
-
-
-        $(".side-bar-movie-box").children(".movie-poster").attr("src", image);
-        $(".side-bar-movie-box").children(".movie-title").text(title);
-        // $(".trailer-url").attr("href", {{}});
-});

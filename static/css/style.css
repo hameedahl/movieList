@@ -143,10 +143,19 @@ body {
         padding: 1.5rem;
 }
 
+
+
 .nav-item i,  .active-nav-item {
         color: #9142ff;
         cursor: pointer;
         display: block;
+}
+
+.close-stream {
+        color: #9142ff;
+        cursor: pointer;   
+        display: inline-block;
+        margin-left: 15px;
 }
 
 .nav-item {
@@ -280,13 +289,20 @@ body {
 }
 
 
-.trailer-btn, .add-to-list-btn  {
+.trailer-btn, .add-to-list-btn, .stream-btn  {
         position: relative;
         background-color: #474747;
+        border: 2px solid #9142ff;
         color: #fff;
         border-radius: .5rem;
         height: 2rem;
         cursor: pointer;
+}
+
+.stream-btn {
+        background-color: transparent;
+        width: 8rem;
+        margin-bottom: 20px;     
 }
 .movie-btns {
         width: 100%;
@@ -306,6 +322,8 @@ a {
 
 .add-to-list-btn {
         width: 2rem;
+        background-color: #9142ff;
+
 }
 
 .my-profile-btn {
@@ -317,7 +335,7 @@ a {
         cursor: pointer;
 }
 
-.my-profile-btn p, .trailer-btn p, .add-to-list-btn p {
+.my-profile-btn p, .trailer-btn p, .stream-btn p, .add-to-list-btn p {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -386,6 +404,7 @@ p, h4, h3 {
         left: 50%;
         transform: translateX(-50%);
         height: 35rem;
+        z-index: 0;
 }
 
 .filters {
@@ -425,6 +444,19 @@ p, h4, h3 {
         margin: auto;
         transition: 0.5s;
 }
+
+.active {
+        color: #9142ff;
+}
+/* .active::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #9142ff;
+        display: block;
+        margin: auto;
+} */
 
 .filter-items:hover::after {
         width: 100%;
@@ -483,6 +515,7 @@ p, h4, h3 {
         margin: 10px;
         position: relative;
         cursor: pointer;
+        z-index: 0;
 }
 
 .movie-genres {
@@ -578,10 +611,113 @@ p, h4, h3 {
         justify-content: space-between;
 }
 
-.plot, .movie-info, .streaming {
+.plot-div, .movie-info, .streaming {
         margin-bottom: 1rem;
 }
 
-.movie-info div p, .plot {
+.movie-info div p, .plot, .stream-option p  {
         font-size: 15px;
+}
+
+.imdb-text::after {
+        content: '/10';
+        position: absolute;
+}
+
+.tomatoes-text::after, .metacritic-text::after {
+        content: '%';
+        position: absolute;
+}
+
+.genre-text::before {
+        content: 'Genre: ';
+        position: relative;
+}
+
+.conuntry-text::before {
+        content: 'Conuntries: ';
+        position: relative;
+}
+
+.language-text::before {
+        content: 'Languages: ';
+        position: relative;
+}
+
+.contentRating-text::before {
+        content: 'Content Rating: ';
+        position: relative;
+}
+
+.runtime-text::before {
+        content: 'Runtime: ';
+        position: relative;
+}
+
+.release-text::before {
+        content: 'Release: ';
+        position: relative;
+}
+
+.movie-info-items p {
+        margin-bottom: 5px;
+}
+
+.movie-info-items p::before  {
+        color: #b485f5;
+}
+
+.stream-header {
+        border: .5px solid #9142ff;
+        width: 50%;
+        border-radius: 1rem;
+        margin: auto;
+        padding: 2px;
+        display: inline-block;
+}
+
+.no-stream {
+        width: 100%;
+        margin: auto;
+}
+
+.trailer-screen {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+}
+
+/* tint for when menu is open */
+        
+        .background-tint { position: relative; z-index: 1;
+                }
+
+.background-tint::after {
+        content: "";
+        position: absolute; 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+        margin: auto;
+}
+
+.watch-options {
+        display: none;
+        width: inherit;
+}
+
+.stream-option {
+        margin: .5rem 0;
+}
+
+.streaming-logo {
+        width: 30%;
+        display: inline-block;
+        padding: 10px;
 }
