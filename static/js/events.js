@@ -1,16 +1,15 @@
 
 var gotStreaming = false;
 var apiCallId = 0; /* use to make new api calls */
+var apiCallId_t = 0;
 
 $(".frame").hide();
 $(".streaming-logo").hide();
 
-// $(".trailer-btn").click(function () {
-//         $("body").addClass("background-tint");
-//         $(".frame").show();
+// $(".trailer-btn").click(async function () {
+//         id = $(".stream-id").val();
+//         await getTrailer(id);
 // })
-
-// continue tut.
 
 $(".close-stream").click(function () {
         gotStreaming = true;
@@ -43,6 +42,39 @@ async function getStreaming(id) {
                         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
                 }
         };
+        
+        await $.ajax(settings).done(function (response) {
+                gotStreaming = true;
+                streaming = JSON.parse(response).streamingInfo;
+                console.log(streaming);
+                if (Object.keys(streaming).length != 0) {
+                        platformsArr = Object.keys(streaming);
+                        console.log(platformsArr);
+                        platformsArr.forEach(platform => {
+                                console.log(streaming[platform]);
+                                $("." + platform).show();
+                                $("." + platform).parents("a").attr("href", (streaming[platform]).us.link);
+                        });
+                } else {
+                        $(".streaming-logo").hide();
+                        $(".stream-option").append(`<p class="no-stream">This title is currently unavailable on all streaming services. Please check back soon.</p>`);
+                }
+        });
+}
+
+async function getTrailer(id) {
+        apiCallId_t = id;
+        var settings = {
+                "url": `https://imdb-api.com/en/API/Trailer/k_1pvaf6m4/${id}`,
+                "method": "GET",
+                "timeout": 0,
+        };
+        
+        // fix
+        await $.ajax(settings).done(function (response) {
+                console.log(response);
+                window.location.href = response.json();
+        });
         
         await $.ajax(settings).done(function (response) {
                 gotStreaming = true;

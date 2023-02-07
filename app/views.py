@@ -2,15 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth # gets users from db
-from .models import Profile
-from .models import PopularMovie
+from .models import Profile,PopularMovie,Post
 from django.contrib.auth.decorators import login_required
 import requests
 # Create your views here.
 
 @login_required(login_url='login') # can not access feed page until you are logged in
 def index(request):
-        user_profile = Profile.objects.get(user=request.user)
+        user_object = User.objects.get(username=request.user.username) # get currently logged in user
+        user_profile = Profile.objects.get(user=user_object)
         popularMovies = PopularMovie.objects.all()
         print(popularMovies)
         return render(request, 'index.html', {'user_profile': user_profile, "popular_movies" : popularMovies})
@@ -101,8 +101,7 @@ def settings(request):
 
         return render(request, 'settings.html', {'user_profile': user_profile})
 
-def popularMovies(request):
-                
+def popularMovies(request):  
         # get movie info
         url = "https://imdb-api.com/en/API/MostPopularMovies/k_1pvaf6m4"
         response = requests.get(url)
@@ -112,20 +111,13 @@ def popularMovies(request):
         for movie in movies:
                 id = movie['id']
                 # get movie info
-                url = f"https://imdb-api.com/en/API/Title/k_1pvaf6m4/{id}/Trailer,Ratings"
+                url = f"https://imdb-api.com/en/API/Title/k_1pvaf6m4/{id}/Ratings"
                 response = requests.get(url)
                 movie_obj = response.json()
 
-                # get streaming info
-                # url = "https://streaming-availability.p.rapidapi.com/get/basic"
-                # querystring = {"country":"us","imdb_id":id,"output_language":"en"}
-                # headers = {
-                #         "X-RapidAPI-Key": "59acf3546cmsh0d1a19afef20499p135371jsn25d6436b4ae9",
-                #         "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
-                # }
-                # streaming = (requests.request("GET", url, headers=headers, params=querystring)).json()
-                # print(streaming)
-                
+                if movie_obj['errorMessage'] != "":
+                        break
+
                 movie_data = PopularMovie(
                         fullTitle = movie_obj['fullTitle'],
                         movie_id = movie_obj['id'],
@@ -139,10 +131,41 @@ def popularMovies(request):
                         languages = movie_obj['languages'],
                         contentRating = movie_obj['contentRating'],
                         ratings = movie_obj['ratings'],
-                        trailer = movie_obj['trailer'],
                         keywords = movie_obj['keywords'],
                         similars = movie_obj['similars']
-                        # streamingServices = streaming['streamingInfo']
                 )
                 movie_data.save()
+                
         return render(request, 'popularMovies.html')
+
+@login_required(login_url='login')
+def upload(request):
+        if request.method == 'POST':
+                user = request.user.username
+                movie_id = request.POST['movie_id']
+                movie_img_url = request.POST['movie_img']
+                movie_title = request.POST['movie_title']
+                caption = request.POST['caption']
+
+                new_post = Post.objects.create(user=user, movie_id=movie_id, movie_img_url=movie_img_url,
+                movie_title=movie_title, caption=caption)
+                new_post.save()
+                return redirect('/')
+        else:
+                user_object = User.objects.get(username=request.user.username) # get currently logged in user
+                user_profile = Profile.objects.get(user=user_object)
+                return render(request, 'upload.html', {'user_profile': user_profile})
+
+@login_required(login_url='login')
+def list(request):
+        user_object = User.objects.get(username=request.user.username) # get currently logged in user
+        user_profile = Profile.objects.get(user=user_object)
+        return render(request,'list.html', {'user_profile': user_profile})
+
+@login_required(login_url='login')
+def feed(request):
+        user_object = User.objects.get(username=request.user.username) # get currently logged in user
+        user_profile = Profile.objects.get(user=user_object)
+
+        feed_list = Post.objects.all()
+        return render(request,'feed.html', {'user_profile': user_profile, 'posts': feed_list})

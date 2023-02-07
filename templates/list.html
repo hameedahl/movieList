@@ -6,13 +6,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WatchedList</title>
+        <title>List</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="{% static 'js/script.js' %}"></script>
-        <script src="{% static 'js/events.js' %}" defer></script>
-
 </head>
 <body>
         <div class="nav-bar">
@@ -20,9 +17,9 @@
                         <h1>Rewind <i class="fa-solid fa-backward"></i></h1>
                 </div>
                 <div class="nav-bar-items">
-                        <a href="/feed"><div class="home-btn nav-item"><i class="fa-solid fa-house"></i><span></span></div></a>
+                        <a href="/feed"><div class="home-btn nav-item"><i class="fa-solid fa-house"></i><span class="active-nav-item"></span></div></a>
                         <a href="/upload"><div class="new-series-btn nav-item"><i class="fa-solid fa-circle-plus"></i><span></span></div></a>
-                        <a href="/"><div class="search-btn nav-item"><i class="fa-solid fa-tv"></i><span class="active-nav-item"></span></div></a>
+                        <a href="/"><div class="search-btn nav-item"><i class="fa-solid fa-tv"></i><span></span></div></a>
                         <a href=""><div class="search-btn nav-item"><i class="fa-solid fa-magnifying-glass"></i><span></span></div></a>
                 </div>
                 <div class="settings">
@@ -32,11 +29,9 @@
         </div>
         <div class="filters">
                 <div class="filter-list">
-                        <div class="filter-items">New Movies</div>
-                        <div class="filter-items active">Popular Movies</div>
-                        <div class="filter-items">For You</div>
-                        <div class="filter-items">Popular Shows</div>  
-                        <div class="filter-items">New Shows</div>
+                        <div class="filter-items active">All</div>
+                        <div class="filter-items">Movies</div>
+                        <div class="filter-items">Shows</div>
                 </div>
         </div>
         <div class="left-bar">
@@ -81,7 +76,7 @@
                         <div class="genre-item"><p>Comedy</p></div>
                 </div>
         </div>
-        <div class="user-feed">
+        <!-- <div class="user-feed">
                 <div class="feed-list">
                         {% for movie in popular_movies %}
                                 <div class="movie movie-box movie-main-box">
@@ -102,10 +97,7 @@
                                 </div>
                         {% endfor %}
                 </div>
-        </div> 
-        <div class="frame">
-                <!-- <iframe class="trailer-screen" height="600" width="856" src="{{popular_movies.0.trailer.linkEmbed}}" frameborder="8"></iframe> -->
-        </div>
+        </div>  -->
         <div class="right-bar">
                 <div class="movie-bar">
                         <div class="movie-bar-content">
@@ -169,38 +161,20 @@
                         </div>
                 </div>
         </div>
-        <script>
-
-                $(".movie").click(function () {
-                        image = $(this).children(".movie-poster").attr("src");
-                        title = $(this).children(".movie-title").text();
-
-                        $(".movie-bar-content").children(".movie-poster").attr("src", image);
-                        $(".movie-bar-content").children(".movie-title").text(title);
-
-                        $(".plot-text").text($(this).children(".plot").val());
-                        $(".genre-text").text($(this).children(".genre").val());
-                        $(".country-text").text($(this).children(".country").val());
-                        $(".language-text").text($(this).children(".language").val());
-                        $(".contentRating-text").text($(this).children(".contentRating").val());
-                        $(".runtime-text").text($(this).children(".runtime").val());
-                        $(".release-text").text($(this).children(".release").val());
-                        $(".trailer-link").attr("href", $(this).children(".trailer").val());
-                        $(".stream-id").val($(this).children(".imdb-id").val());
-
-                       // if ($(".tomatoes").val() == "" || $(".tomatoes").val() == "None"){ 
-                                console.log("Hi")
-                                $(".tomatoes-text").text($(this).children(".tomatoes").val());
-                       // }
-                       // if ($(".metacritic").val() == "" || $(".metacritic").val() == "None"){ 
-                                $(".metacritic-text").text($(this).children(".metacritic").val());
-                       // }
-                        //if ($(".imdb").val() == "" || $(".imdb").val() == "None"){ 
-                                $(".imdb-text").text($(this).children(".imdb").val());
-                       // }
-                        $(".stream-btn").show();
-                        $(".watch-options").css("display", "none");
-                });
-        </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>List</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+        
 </body>
 </html>

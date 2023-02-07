@@ -7,5 +7,9 @@ urlpatterns = [
         path('login', views.login, name='login'),
         path('logout', views.login, name='logout'),
         path('settings', views.settings, name='settings'),
-        # path('popularMovies', views.popularMovies, name='popularMovies')
+        path('upload', views.upload, name='upload'),
+        path('list', views.list, name='list'),
+        path('feed', views.feed, name='feed'),
+
+        path('popularMovies', views.popularMovies, name='popularMovies')
 ]
