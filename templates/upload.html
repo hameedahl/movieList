@@ -1,5 +1,5 @@
 {% load static %}
-
+<!-- http://127.0.0.1:8000/upload -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,7 @@
                         <a href="/feed"><div class="home-btn nav-item"><i class="fa-solid fa-house"></i><span></span></div></a>
                         <a href="/upload"><div class="new-series-btn nav-item"><i class="fa-solid fa-circle-plus"></i><span class="active-nav-item"></span></div></a>
                         <a href="/"><div class="search-btn nav-item"><i class="fa-solid fa-tv"></i><span></span></div></a>
-                        <a href=""><div class="search-btn nav-item"><i class="fa-solid fa-magnifying-glass"></i><span></span></div></a>
+                        <div class="search-btn nav-item"><i class="fa-solid fa-magnifying-glass"></i><span></span></div>
                 </div>
                 <div class="settings">
                         <div><a href="/settings"><i class="fa-solid fa-gear"></i></a></div>
@@ -72,28 +72,24 @@
         </div>
         <div class="user-feed">
                 <div class="search-div">
-                        <form action="upload" method="post" class="movie-query-form">
-                                {% csrf_token %}
+                        <div class="inputs">
                                 <input type="text" name="movie-query" id="movie-query" placeholder="Search">
                                 <label for="">Movie</label>
                                 <input type="radio" name="title-type" id="feature">
                                 <label for="">TV Show</label>
                                 <input type="radio" name="title-type" id="tv_series">
-                                <button>Search</button>
+                                <button>Search</button><br>
                                 <div class="titles-found">
-                                </div>
-                                <br>
-                                <input type="text" name="caption" id="caption" placeholder="What would you like to share about this title?">
-                                <input type="hidden" name="movie_id">
-                                <input type="hidden" name="movie_img">
-                                <input type="hidden" name="movie_title">
-                                <button type="submit">Add to Rewind</button>
-                        </form>
+                                        <p>This is one name</p>
+                                        <p>This is another name</p>
+                                        <p>And another</p>
+                                </div>    
+                        </div>
                 </div>
         </div> 
         <div class="right-bar">
-                <div class="movie-bar">
-                        <h4>Preivew</h4>
+                <div class="movie-bar-upload">
+                        <h4>Preview</h4>
                         <div class="movie-bar-content">
                                 <img class="movie-poster" src="{{popular_movies.0.image}}" alt="">
                                 <h3 class="movie-title">{{popular_movies.0.fullTitle}}</h3>
@@ -112,13 +108,21 @@
                                 <p class="plot-text">{{popular_movies.0.plot}}</p>
                         </div>
                         <div class="movie-bar-content movie-info">
-                                <p class="caption-preview">This is the cation</p>
+                                <input type="text" name="caption" id="caption" placeholder="What would you like to share about this title?">
+                                <!-- <p class="caption-preview">This is the cation</p> -->
                         </div>
-                        <div class="movie-bar-content movie-btns">
-                                <div class="stream-btn">
-                                        <p>Add to Rewind</p>
+                        <form action="upload" method="post" class="movie-query-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="movie_id">
+                                <input type="hidden" name="movie_img">
+                                <input type="hidden" name="movie_title">
+                                <div class="movie-bar-content movie-btns">
+                                        <div class="stream-btn">
+                                                <!-- <button type="submit">Add to Rewind</button> -->
+                                                <p>Add to Rewind</p>
+                                        </div>
                                 </div>
-                        </div>
+                         </form>
                 </div>
         </div>
         <script>

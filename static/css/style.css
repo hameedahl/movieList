@@ -6,8 +6,7 @@
 }
 
 
-/********** SIGN UP PAGE **********/
-
+/********** SIGN UP PAGE **********/ 
 body {
         background-color: #1e1e1e;
         display: flex;
@@ -691,8 +690,8 @@ p, h4, h3 {
 
 /* tint for when menu is open */
         
-        .background-tint { position: relative; z-index: 1;
-                }
+.background-tint { position: relative; z-index: 1;
+        }
 
 .background-tint::after {
         content: "";
@@ -729,3 +728,31 @@ p, h4, h3 {
 .fa-star {
         cursor: pointer;
 }
+
+/********** UPLOAD PAGE **********/ 
+
+.search-div {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        text-align: center;
+        /* CSS IS NOT LOADING IDK */
+}
+
+/* .caption-preview {
+        text-align: center;
+        width: 100%;
+        /* position: absolute;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%); 
+} */
+
+/* .movie-bar-upload {
+        display: flex;
+        justify-content: center;
+        background-color: red;
+
+}  */
