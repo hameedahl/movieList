@@ -47,4 +47,4 @@ To run this web application locally, follow these steps:
 ## Screenshots
 
 
-![mainFeed](https://github.com/hameedahl/movieList/screenshots/mainFeed.png)
+![mainFeed](https://github.com/hameedahl/movieList/blob/main/screenshots/mainFeed.png)
