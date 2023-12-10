@@ -11,7 +11,7 @@ A social media web application for movie fanatics, built with Python, Django, an
 
 ## About
 
-This web application is designed for movie enthusiasts to keep track of their watched movies and TV series. Key highlights of the project include:
+This web application is designed for movie enthusiasts to keep track of the movies and TV series they watch. Key highlights of the project include:
 
 - Utilizing Python and Django to create the application's back-end.
 - Integrating two external APIs to fetch movie and TV show data.
@@ -28,12 +28,11 @@ This web application is designed for movie enthusiasts to keep track of their wa
 
 ## Technologies Used
 
-- Python
-- Django
+- Python && Django
 - HTML
 - CSS
 - JavaScript
-- External APIs (Specify which APIs you've used)
+- External APIs
 
 ## Getting Started
 
